@@ -1,0 +1,93 @@
+#all {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+
+#top1 {
+    width: 100%;
+    height: 25px;
+    background-color: #2D2D30;
+    position: relative;
+    z-index: 99999;
+}
+
+#left1 {
+    display: inline-block;
+    width: 200px;
+    height: 100%;
+    background-color: #2D2D30;
+    position: relative;
+    z-index: 1;
+}
+
+#right1 {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-color: #2D2D30;
+    position: absolute;
+}
+
+#editor {
+    top: 2%;
+    height: 90%;
+    width: 96%;
+    display: inline-block;
+}
+
+li {
+    display: inline;
+    z-index: 99999;
+    text-decoration: none;
+    top: 5px;
+}
+
+li a {
+    font-size: 12px;
+    color: white;
+    padding: 4px 8px;
+    text-decoration: none;
+    cursor: default;
+    z-index: 99999;
+}
+
+li a:hover {
+    background-color: #53535B;
+    text-decoration: none;
+    color: white;
+    border-radius: 2vh;
+    font-size: 12.5px;
+    transition: 0.6s;
+    transition-delay: 0.1s;
+    transition-timing-function: linear, ease-in;
+    transition-property: background, border-radius;
+    z-index: 99999;
+    top: 0;
+    text-decoration: none;
+}
+
+ul {
+    font-size: 12px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    background-color: #2D2D30;
+    top: 0;
+    text-decoration: none;
+    z-index: 99999;
+}
+
+.maxtro {
+    position: relative;
+    z-index: 99999;
+    text-decoration: none;
+}
+
+.dropdown-menu {
+    position: absolute;
+    z-index: 99999;
+    overflow: hidden;
+    text-decoration: none;
+}
