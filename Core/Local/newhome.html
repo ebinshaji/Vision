@@ -31,11 +31,10 @@
             <li class="maxtro">
                 <a style="list-style-type: none;text-decoration: none;color: white;" href="" data-toggle="dropdown">File </a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">New</a></li>
                     <li onClick="showModal()"><a href="#">Open</a></li>
                     <li><a href="#" onclick="saveTextAsFile()">Save</a></li>
                     <li class="divider"></li>
-                    <li><a href="#">Exit</a></li>
+                    <li id="newfileftt"><a href="#">Exit</a></li>
                 </ul>
             </li>
             <li class="maxtro">
@@ -129,6 +128,9 @@
 
 <textarea class="col-md-6" name="content" id="content"  disabled="disabled" style="visibility: hidden;"></textarea>
 <script>
+
+
+
     var data = document.getElementById("content");
     function saveTextAsFile(){
         var blob = new Blob ([data.value], {type: "html/plain;charset=utf-8"});
@@ -228,7 +230,10 @@
 var undoButton = document.getElementById("undo");
 undoButton.innerHTML = 'Undo';
 var redoButton = document.getElementById("redo");
-redoButton.innerHTML = 'Redo';  
+redoButton.innerHTML = 'Redo';
+var cutButton = document.getElementById("cut");
+var copyButton = document.getElementById("copy");
+var pasteButton = document.getElementById("paste");
 
             </script>
 
@@ -244,9 +249,54 @@ redoButton.innerHTML = 'Redo';
 redoButton.onclick = function (e) {
     editor.getSession().getUndoManager().redo(false);
 };
+cutButton.onclick = function (e) {
+    var text = editor.getCopyText()
+    editor.execCommand("cut") 
+    editor.insert("");
+    navigator.clipboard.writeText(text);
+
+};
+
+copyButton.onclick = function (e) {
+    var text = editor.getCopyText()
+    editor.execCommand("copy")
+    navigator.clipboard.writeText(text);
+
+};
+
+pasteButton.onclick = function (e) {
+    var text = editor.getCopyText()
+            navigator.clipboard.read().then((data) => {
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].types.includes("text/plain")) {
+                        data[i].getType("text/plain").then(function (blob) {
+                            blob.text().then(function (text) {
+                            
+                                editor.session.insert(editor.getCursorPosition(), text);
+                                // editor.session.insert({row: 2, column: 56}, text);
+                            });
+                        });
+                    } 
+                }
+            });
+        
 
 
-        }
+
+
+
+
+
+
+
+
+}
+
+      
+            
+    
+
+}
         setupEditor();
     </script>
     
