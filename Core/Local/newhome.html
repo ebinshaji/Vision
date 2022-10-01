@@ -40,20 +40,17 @@
             <li class="maxtro">
                 <a style="list-style-type: none;text-decoration: none;color: white;" href="" data-toggle="dropdown">Edit </a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a id="undo" href="#">Undo</a></li>
-                    <li><a id="redo" href="#">Redo</a></li>
-                    <li class="divider"></li>
-                    <li><a id="cut" href="#">Cut</a></li>
-                    <li><a id="copy" href="#">Copy</a></li>
-                    <li><a id="paste" href="#">Paste</a></li>
+                    <li><a id="undo" href="#">Undo  ctrl+z</a></li>
+                    <li><a id="redo" href="#">Redo  ctrl+y</a></li>
+           
                 </ul>
             </li>
             <li class="maxtro">
                 <a style="list-style-type: none;text-decoration: none;color: white;" href="" data-toggle="dropdown">Find </a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Find</a></li>
+                    <li><a id="findtxt" href="#">Find</a></li>
                     <li class="divider"></li>
-                    <li><a href="#">Replace</a></li>
+                    <li><a id="replacetxt" href="#">Replace</a></li>
                 </ul>
             </li>
 
@@ -228,12 +225,10 @@
 
             
 var undoButton = document.getElementById("undo");
-undoButton.innerHTML = 'Undo';
 var redoButton = document.getElementById("redo");
-redoButton.innerHTML = 'Redo';
-var cutButton = document.getElementById("cut");
-var copyButton = document.getElementById("copy");
-var pasteButton = document.getElementById("paste");
+var findButton = document.getElementById("findtxt");
+var replaceButton = document.getElementById("replacetxt");
+
 
             </script>
 
@@ -248,53 +243,13 @@ var pasteButton = document.getElementById("paste");
 };
 redoButton.onclick = function (e) {
     editor.getSession().getUndoManager().redo(false);
-};
-cutButton.onclick = function (e) {
-    var text = editor.getCopyText()
-    editor.execCommand("cut") 
-    editor.insert("");
-    navigator.clipboard.writeText(text);
-
-};
-
-copyButton.onclick = function (e) {
-    var text = editor.getCopyText()
-    editor.execCommand("copy")
-    navigator.clipboard.writeText(text);
-
-};
-
-pasteButton.onclick = function (e) {
-    var text = editor.getCopyText()
-            navigator.clipboard.read().then((data) => {
-                for (let i = 0; i < data.length; i++) {
-                    if (data[i].types.includes("text/plain")) {
-                        data[i].getType("text/plain").then(function (blob) {
-                            blob.text().then(function (text) {
-                            
-                                editor.session.insert(editor.getCursorPosition(), text);
-                                // editor.session.insert({row: 2, column: 56}, text);
-                            });
-                        });
-                    } 
-                }
-            });
-        
-
-
-
-
-
-
-
-
-
-
-}
-
-      
-            
-    
+}; 
+findButton.onclick = function (e){
+    editor.execCommand('find');
+}  
+replaceButton.onclick = function (e){
+    editor.execCommand('replace');
+}  
 
 }
         setupEditor();
@@ -378,7 +333,10 @@ pasteButton.onclick = function (e) {
                     showLineNumbers: true,
                     showGutter: true,
                     enableBasicAutocompletion: true,
-                    enableLiveAutocompletion: true
+                    enableLiveAutocompletion: true,
+                    enableSnippets: true,
+                    autoScrollEditorIntoView: true,
+                    copyWithEmptySelection: true
                 });
 
                 editor.setShowPrintMargin(false);

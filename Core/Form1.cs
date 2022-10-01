@@ -4,13 +4,18 @@ using CefSharp.WinForms;
 using System.IO;
 using System.Reflection;
 using ComponentFactory.Krypton.Toolkit;
-
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
 
 namespace Core
 {
     public partial class MainForm : KryptonForm
     {
-
+        protected string clipdata;
 
         public ChromiumWebBrowser chromeBrowser;
         public MainForm()
@@ -38,8 +43,7 @@ namespace Core
             CefSharpSettings.FocusedNodeChangedEnabled = true;
 
 
-            var settingsda = new CefSettings();
-            settingsda.CefCommandLineArgs.Add("disable-web-security");
+           
 
             //Perform dependency check to make sure all relevant resources are in our output directory.
            
@@ -85,6 +89,7 @@ element.onclick = function() {
 ");
             }
         }
+  
 
         private void OnBrowserJavascriptMessageReceived(object sender, JavascriptMessageReceivedEventArgs e)
         {

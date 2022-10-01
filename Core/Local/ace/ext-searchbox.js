@@ -6,13 +6,13 @@ var lang = require("../lib/lang");
 var event = require("../lib/event");
 var searchboxCss = "\
 .ace_search {\
-background-color: #ddd;\
-color: #666;\
-border: 1px solid #cbcbcb;\
-border-top: 0 none;\
+background-color:#2D2D30 ;\
+color: #fff;\
+border: 1px solid #2D2D30;\
+border-top: ;\
 overflow: hidden;\
-margin: 0;\
-padding: 4px 6px 0 4px;\
+margin: -1px 15%;\
+padding: 15px;\
 position: absolute;\
 top: 0;\
 z-index: 99;\
@@ -42,8 +42,8 @@ outline: 1px solid red;\
 .ace_search_field {\
 border-radius: 3px 0 0 3px;\
 background-color: white;\
-color: black;\
-border: 1px solid #cbcbcb;\
+color: 2D2D30;\
+border: 1px solid #2D2D30;\
 border-right: 0 none;\
 outline: 0;\
 padding: 0;\
@@ -57,21 +57,21 @@ min-height: 1.8em;\
 box-sizing: content-box;\
 }\
 .ace_searchbtn {\
-border: 1px solid #cbcbcb;\
+border: 1px solid #2D2D30;\
 line-height: inherit;\
 display: inline-block;\
 padding: 0 6px;\
 background: #fff;\
 border-right: 0 none;\
-border-left: 1px solid #dcdcdc;\
+border-left: 1px solid #2D2D30;\
 cursor: pointer;\
 margin: 0;\
 position: relative;\
-color: #666;\
+color: #2D2D30;\
 }\
 .ace_searchbtn:last-child {\
 border-radius: 0 3px 3px 0;\
-border-right: 1px solid #cbcbcb;\
+border-right: 1px solid #2D2D30;\
 }\
 .ace_searchbtn:disabled {\
 background: none;\
@@ -85,7 +85,7 @@ padding: 0px 0.7em\
 }\
 .ace_searchbtn.prev:after, .ace_searchbtn.next:after {\
 content: \"\";\
-border: solid 2px #888;\
+border: solid 2px #2D2D30;\
 width: 0.5em;\
 height: 0.5em;\
 border-width:  2px 0 0 2px;\
@@ -99,7 +99,7 @@ border-width: 0 2px 2px 0 ;\
 background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAcCAYAAABRVo5BAAAAZ0lEQVR42u2SUQrAMAhDvazn8OjZBilCkYVVxiis8H4CT0VrAJb4WHT3C5xU2a2IQZXJjiQIRMdkEoJ5Q2yMqpfDIo+XY4k6h+YXOyKqTIj5REaxloNAd0xiKmAtsTHqW8sR2W5f7gCu5nWFUpVjZwAAAABJRU5ErkJggg==) no-repeat 50% 0;\
 border-radius: 50%;\
 border: 0 none;\
-color: #656565;\
+color: white;\
 cursor: pointer;\
 font: 16px/16px Arial;\
 padding: 0;\
@@ -124,17 +124,17 @@ cursor: pointer;\
 user-select: none;\
 overflow: hidden;\
 opacity: 0.7;\
-border: 1px solid rgba(100,100,100,0.23);\
+border: 1px solid rgba(255,255,255,0.23);\
 padding: 1px;\
 box-sizing:    border-box!important;\
-color: black;\
+color: fff;\
 }\
 .ace_button:hover {\
-background-color: #eee;\
+background-color: rgba(255,255,255,0.23);\
 opacity:1;\
 }\
 .ace_button:active {\
-background-color: #ddd;\
+background-color: rgba(255,255,255,0.23);\
 }\
 .ace_button.checked {\
 border-color: #3399ff;\
@@ -167,7 +167,7 @@ var SearchBox = function(editor, range, showReplaceForm) {
     dom.buildDom(["div", {class:"ace_search right"},
         ["span", {action: "hide", class: "ace_searchbtn_close"}],
         ["div", {class: "ace_search_form"},
-            ["input", {class: "ace_search_field", placeholder: "Search for", spellcheck: "false"}],
+            ["input", {class: "ace_search_field", placeholder: "Find", spellcheck: "false"}],
             ["span", {action: "findPrev", class: "ace_searchbtn prev"}, "\u200b"],
             ["span", {action: "findNext", class: "ace_searchbtn next"}, "\u200b"],
             ["span", {action: "findAll", class: "ace_searchbtn", title: "Alt-Enter"}, "All"]
